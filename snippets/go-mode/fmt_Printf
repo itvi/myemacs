@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: fmt.Printf - Print format
+# key: pf
+# binding: direct-keybinding
+# --
+fmt.Printf("%$1",$2)
