@@ -137,6 +137,7 @@
 (require 'init-yaml)
 (require 'init-highlight-indent-guides)
 (require 'init-treemacs)
+(require 'init-undo-tree)
 
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific program language
@@ -144,7 +145,6 @@
 (add-to-list 'load-path "~/myemacs/init/lang/")
 (require 'init-lsp)
 (require 'init-web)
-(require 'init-javascript)
 
 ;;; Garbage collector-decrease threshold to 5 MB
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold (* 5 1024 1024))))
