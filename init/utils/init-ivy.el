@@ -53,6 +53,7 @@
    "f"   'flycheck-mode
    "g"   'magit-status
    "l"   'counsel-locate
+   "p"   'projectile-find-file
    "TAB" '(switch-to-other-buffer :which-key "prev buffer")
    "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
    "w"   'ace-window
