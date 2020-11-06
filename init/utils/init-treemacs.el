@@ -60,6 +60,14 @@
 
     (treemacs-resize-icons 24)
 
+    ;; open files in the buffer currently in focus
+    ;; https://github.com/Alexander-Miller/treemacs/issues/266
+    (treemacs-define-RET-action 'file-node-closed #'treemacs-visit-node-ace)
+    (treemacs-define-RET-action 'file-node-open #'treemacs-visit-node-ace)
+
+    (treemacs-define-doubleclick-action 'file-node-closed #'treemacs-visit-node-ace)
+    (treemacs-define-doubleclick-action 'file-node-open #'treemacs-visit-node-ace)
+    
     (treemacs-follow-mode t)
     (treemacs-filewatch-mode t)
     (treemacs-fringe-indicator-mode t)
