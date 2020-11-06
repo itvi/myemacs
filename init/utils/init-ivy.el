@@ -51,6 +51,7 @@
    "/"   'counsel-ag
    "c"   'company-mode
    "f"   'flycheck-mode
+   "g"   'magit-status
    "l"   'counsel-locate
    "TAB" '(switch-to-other-buffer :which-key "prev buffer")
    "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
