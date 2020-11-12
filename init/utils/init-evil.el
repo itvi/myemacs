@@ -10,10 +10,12 @@
   )
 
 (use-package evil-magit
-  :ensure t)
+  :ensure t
+  :defer 1)
 
 (use-package evil-org
   :ensure t
+  :defer 1
   :after org
   :config
   (add-hook 'org-mode-hook 'evil-org-mode)
