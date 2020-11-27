@@ -51,6 +51,10 @@
          company-quickhelp-color-foreground "white")
   )
 
+(use-package company-box
+  :ensure t
+  :hook (company-mode . company-box-mode))
+
 ;; (use-package company-box
 ;;   :ensure t
 ;;   :hook (company-mode . company-box-mode)

@@ -27,6 +27,9 @@
 ;;; Increase the garbage collection threshold to 128 MB to ease startup
 (setq gc-cons-threshold (* 128 1024 1024 ))
 
+;;; Increase the amount of data which Emacs reads from the process.
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 ;; Use a hook so the message doesn't get clobbered by other messages.
 (add-hook 'emacs-startup-hook
           (lambda ()
@@ -53,14 +56,14 @@
 ;; (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
 ;;                          ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 
-;; (setq package-archives '(("gnu"   . "https://elpa.emacs-china.org/gnu/")
-;;                          ("melpa" . "https://elpa.emacs-china.org/melpa/")
-;;                          ("org"   . "https://elpa.emacs-china.org/org/")))
+(setq package-archives '(("gnu"   . "https://elpa.emacs-china.org/gnu/")
+                         ("melpa" . "https://elpa.emacs-china.org/melpa/")
+                         ("org"   . "https://elpa.emacs-china.org/org/")))
 
-(setq package-archives
-      '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-        ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-        ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+;; (setq package-archives
+;;       '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+;;         ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+;;         ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))

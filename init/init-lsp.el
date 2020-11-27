@@ -11,7 +11,7 @@
 ;; go get -u -v golang.org/x/tools/cmd/gopls
 (use-package go-mode
   :ensure t
-  :hook(lsp-deferred . go-mode)
+  ;;:hook(lsp-deferred . go-mode)
   :config
   (setq gofmt-command "goimports")
   ;;(add-hook 'before-save-hook 'gofmt-before-save)
@@ -46,21 +46,43 @@
 ;; lsp
 ;; ---------------------------------------------------
 ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-(setq lsp-keymap-prefix "C-l")
+;;(setq lsp-keymap-prefix "C-l")
+
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :commands(lsp lsp-deferred)
+;;   :hook ((
+;;           go-mode
+;;           python-mode
+;;           js-mode typescript-mode js2-mode rjsx-mode
+;;           ) . lsp)
+;;   :config
+;;   (setq lsp-prefer-flymake nil)
+;;   (setq lsp-enable-snippet nil)
+;;   (setq gofmt-command "goimports")
+;;   )
+
+(setq lsp-keymap-prefix "s-l")
 
 (use-package lsp-mode
-  :ensure t
-  :commands(lsp lsp-deferred)
-  :hook ((
-          go-mode
-          python-mode
-          js-mode typescript-mode js2-mode rjsx-mode
-          ) . lsp)
-  :config
-  (setq lsp-prefer-flymake nil)
+  :hook (
+         (go-mode . lsp)
+         (python-mode . lsp)
+         (js-mode . lsp)
+         (typescript-mode . lsp)
+         (js2-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp
+  :init
+  ;; (setq lsp-auto-configure nil)
   (setq lsp-enable-snippet nil)
-  (setq gofmt-command "goimports")
+  (setq lsp-completion-provider :capf)
   )
+
+(with-eval-after-load 'lsp-mode
+  ;; :global/:workspace/:file
+  (setq lsp-modeline-diagnostics-scope :workspace))
 
 ;; Set up before-save hooks to format buffer and add/delete imports.
 ;; Make sure you don't have other gofmt/goimports hooks enabled.
@@ -74,20 +96,20 @@
   :requires lsp-mode flycheck
   ;; :bind("C-c l" . lsp-ui-imenu)
   :config
-  (setq
-   ;; lsp-ui-doc
-   lsp-ui-doc-enable t
-   lsp-ui-doc-header t
-   lsp-ui-doc-border (face-foreground 'default)
-   lsp-ui-doc-position 'at-point
-   ;; lsp-ui-imenu
-   lsp-ui-imenu-enable t
-   ;; lsp-ui-peek
-   (lsp-ui-peek-enable t)
-   ;; (lsp-ui-peek-peek-height 20)
-   ;; (lsp-ui-peek-list-width 50)
-   ;; (lsp-ui-peek-fontify 'on-demand) ;; never, on-demand, or always
-   )
+  ;; (setq
+  ;;  ;; lsp-ui-doc
+  ;;  lsp-ui-doc-enable t
+  ;;  lsp-ui-doc-header t
+  ;;  lsp-ui-doc-border (face-foreground 'default)
+  ;;  lsp-ui-doc-position 'at-point
+  ;;  ;; lsp-ui-imenu
+  ;;  lsp-ui-imenu-enable t
+  ;;  ;; lsp-ui-peek
+  ;;  (lsp-ui-peek-enable t)
+  ;;  ;; (lsp-ui-peek-peek-height 20)
+  ;;  ;; (lsp-ui-peek-list-width 50)
+  ;;  ;; (lsp-ui-peek-fontify 'on-demand) ;; never, on-demand, or always
+  ;;  )
   (custom-set-faces
    '(lsp-ui-doc-background ((t :background "black")))
    '(lsp-ui-doc-header ((t :foreground "#ff8000" :background "#00ff00")))
@@ -100,6 +122,7 @@
   :config
   (push 'company-lsp company-backends)
   (setq company-lsp-cache-candidates 'auto) ;; ignore case
+  (setq company-lsp-enable-snippet nil)
 
   ;; Disable client-side cache because the LSP server does a better job.
   (setq company-transformers nil
