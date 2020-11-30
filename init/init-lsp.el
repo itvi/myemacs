@@ -65,6 +65,7 @@
 (setq lsp-keymap-prefix "s-l")
 
 (use-package lsp-mode
+  :ensure t
   :hook (
          (go-mode . lsp)
          (python-mode . lsp)
