@@ -14,8 +14,8 @@
   )
 
 (use-package org
-  ;; :pin manual
-  :ensure t
+  ;; :pin manual ;; :pin org
+  :ensure  org-plus-contrib
   :commands (org-agenda org-capture)
   :bind(("C-c a" . org-agenda)
         ("C-c c" . org-capture)
@@ -26,6 +26,7 @@
         )
   :config
   (add-hook 'org-agenda-mode-hook 'org-agenda-to-appt)
+  (setq system-time "C")
   (setq org-agenda-files (list
                           "~/org"
                           "~/org/archive"
