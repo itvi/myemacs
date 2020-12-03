@@ -5,14 +5,16 @@
 ;;; Code:
 
 (use-package projectile
-  ;; :defer t
   :ensure t
+  :defer 1
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map))
   :config
-  (setq projectile-mode-line-function '(lambda () (format " Proj[%s]" (projectile-project-name))))
-  ;;(setq projectile-mode-line-lighter " Pj")
   (setq projectile-completion-system 'ivy)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1))
+  )
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here

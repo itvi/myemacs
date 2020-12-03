@@ -23,6 +23,8 @@
 ;; disable welcome page
 (setq inhibit-startup-message t)
 
+(setq inhibit-compacting-font-caches t)
+
 ;; frame size
 ;; (setq initial-frame-alist '((top . 30) (left . 500) (width . 100) (height . 30)))
 

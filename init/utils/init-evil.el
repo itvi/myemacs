@@ -5,17 +5,26 @@
 (use-package evil
   :ensure t
   :defer 1 
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
   :config
-  (evil-mode)
+  (evil-mode 1)
   )
 
-(use-package evil-magit
+(use-package evil-collection
+  :after evil
   :ensure t
-  :defer 1)
+  :config
+  (evil-collection-init))
+
+;; (use-package evil-magit
+;;   :ensure t
+;;   :defer t)
 
 (use-package evil-org
   :ensure t
-  :defer 1
+  :defer 2
   :after org
   :config
   (add-hook 'org-mode-hook 'evil-org-mode)
