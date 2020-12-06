@@ -6,6 +6,7 @@
 
 (use-package ivy
   :ensure t
+  :defer 1 
   :diminish (ivy-mode . "")         ; does not display ivy in the modeline
   :init (ivy-mode 1)                ; enable ivy globally at startup
   :config
@@ -39,7 +40,7 @@
    "f"  '(:ignore t :which-key "files")
    "ff" 'counsel-find-file
    "fr"	'counsel-recentf
-   "p"  '(:ignore t :which-key "project")
+   ;;"p"  '(:ignore t :which-key "project")
    "pf" '(counsel-git :which-key "find file in git dir")
    )
   (general-define-key
@@ -53,7 +54,6 @@
    "f"   'flycheck-mode
    "g"   'magit-status
    "l"   'counsel-locate
-   "p"   'projectile-find-file
    "TAB" '(switch-to-other-buffer :which-key "prev buffer")
    "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
    "w"   'ace-window
