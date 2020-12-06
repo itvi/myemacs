@@ -18,6 +18,7 @@
 
 (use-package org-super-agenda
   :ensure t
+  :defer t
   :init
   ;; (setq org-agenda-skip-scheduled-if-done t
   ;;       org-agenda-skip-deadline-if-done t
@@ -28,7 +29,7 @@
   ;;       org-agenda-span 1
   ;;       org-agenda-start-on-weekday nil)
   (setq org-agenda-custom-commands
-        '(("z" "Hugo view"
+        '(("z" "Super view"
            (
             (agenda "" ((org-agenda-span 'day)
                         (org-super-agenda-groups
@@ -74,7 +75,17 @@
                             (:name "On hold"
                                    :todo "HOLD"
                                    :order 10)
-                            ;;(:discard (:not (:todo "TODO")))
+                            (:name "Inbox"
+                                   :tag "Inbox")
+                            (:name "Trivial"
+                                   :todo "SOMEDAY"
+                                   :order 100)
+                            (:name "Next to do"
+                                   :todo "NEXT"
+                                   :order 3)
+                            (:name "Cancelled"
+                                   :todo "CANCELLED")
+                            ;;(:discard (:anything t))
                             ))))))))
   (setq org-super-agenda-header-map nil) ;; evil working
   
@@ -85,13 +96,14 @@
   (custom-set-faces
    '(org-super-agenda-header ((t (:box (:line-width 1 :color "grey") :slant italic :weight bold))))
    )
-  :config
-  (org-super-agenda-mode)
+  ;;:config
+  ;;(org-super-agenda-mode)
   )
 
 (use-package org
   ;; :pin manual ;; :pin org
   :ensure  org-plus-contrib
+  :defer t
   :commands (org-agenda org-capture)
   :bind(("C-c a" . org-agenda)
         ("C-c c" . org-capture)
@@ -102,12 +114,17 @@
         )
   :config
   (setq system-time "C")
-  (setq org-fast-tag-selection-single-key t)
-  (setq org-use-fast-todo-selection t)
-  (setq org-use-speed-commands t)
-  (setq org-src-fontify-natively t)
-  (setq org-src-tab-acts-natively t)
-  
+  ;; (setq org-fast-tag-selection-single-key t)
+  ;; (setq org-use-fast-todo-selection t)
+  ;; (setq org-use-speed-commands t)
+  ;; (setq org-src-fontify-natively t)
+  ;; (setq org-src-tab-acts-natively t)
+  ;; (setq org-agenda-dim-blocked-tasks nil)
+  ;; (setq org-agenda-inhibit-startup t)
+  ;; (setq org-agenda-use-tag-inheritance nil)
+  (setq org-startup-folded 'content)
+
+  (add-hook 'org-mode-hook 'org-super-agenda-mode)
   (add-hook 'org-agenda-mode-hook 'org-agenda-to-appt)
   (setq org-agenda-files (list
                           "~/org"
@@ -150,7 +167,7 @@
                 ("WAITING" :foreground "yellow" :weight bold)
                 ("HOLD" :foreground "orange" :weight bold)
                 ("CANCELLED" :foreground "gray" :weight bold)
-                ("MEETING" :foreground "forest green" :weight bold))))
+                )))
 
   ;; Tag tasks with GTD-ish contexts
   (setq org-tag-alist '(("@office" . ?o)
@@ -167,7 +184,7 @@
                 )))
 
   (setq org-capture-templates
-        (quote (("i" "inbox" entry (file "~/org/refile.org")
+        (quote (("i" "inbox" entry (file "~/org/inbox.org")
                  "* TODO %?\n%U\n%a\n")
                 ("t" "todo" entry (file+datetree "~/org/todo.org")
                  "* TODO %?\n  %U\n  %a\n")
@@ -175,19 +192,45 @@
                  "* %? :PAUSE:\n%U\n%a\n" :clock-in t :clock-resume t)
                 ("r" "reference" entry (file "~/org/reference.org")
                  "* %? \n%U\n%a\n")
-                ;; ("n" "note" entry (file "~/org/refile.org")
-                ;;  "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-                ("d" "Diary" entry (file+datetree "~/org/diary.org")
+                ("d" "diary" entry (file+datetree "~/org/diary.org")
                  "* %?\n%U\n" :clock-in t :clock-resume t)
                 ("w" "Work Log" entry (file+datetree "~/org/worklog.org")
                  "* %?\n%U\n" :clock-in t :clock-resume t)
-                ("m" "Meeting" entry (file "~/org/refile.org")
-                 "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-                ("h" "Habit" entry (file "~/org/refile.org")
+                ("h" "habit" entry (file "~/org/habit.org")
                  "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
                 )
                )
         )
+
+  ;; ===================================================================
+  ;; refile
+  ;; ===================================================================
+  ;; Targets include this file and any file contributing to the agenda - up to 9 levels deep
+  (setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                   (org-agenda-files :maxlevel . 9))))
+
+  ;; Use full outline paths for refile targets
+  (setq org-refile-use-outline-path t)
+
+  ;; Targets complete directly with IDO
+  (setq org-outline-path-complete-in-steps nil)
+
+  ;; Allow refile to create parent tasks with confirmation
+  (setq org-refile-allow-creating-parent-nodes (quote confirm))
+
+  ;; Use the current window for indirect buffer display
+  (setq org-indirect-buffer-display 'current-window)
+
+  ;; Refile settings
+  ;; Exclude DONE state tasks from refile targets
+  (defun bh/verify-refile-target ()
+    "Exclude todo keywords with a done state from refile targets."
+    (not (member (nth 2 (org-heading-components)) org-done-keywords)))
+
+  (setq org-refile-target-verify-function 'bh/verify-refile-target)
+  ;; --------------------
+  ;; end refile
+  ;; --------------------
   )
 
 (provide 'my-org)

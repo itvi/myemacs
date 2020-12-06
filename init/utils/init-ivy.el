@@ -25,7 +25,8 @@
   :ensure t
   :bind(("C-s" . swiper)))
 
-(use-package general :ensure t
+(use-package general
+  :ensure t
   :config
   ;; keys binding (different prefix key)
   (general-define-key
