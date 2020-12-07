@@ -38,7 +38,8 @@
                                   :date today
                                   :todo "TODO"
                                   :scheduled today
-                                  :order 1)))))
+                                  :order 1)
+                           (:discard (:anything))))))
             (alltodo "" ((org-agenda-overriding-header "")
                          (org-super-agenda-groups
                           '(;; Each group has an implicit boolean OR operator between its selectors.
@@ -72,9 +73,6 @@
                             (:name "Waiting"
                                    :todo "WAITING"
                                    :order 9)
-                            (:name "On hold"
-                                   :todo "HOLD"
-                                   :order 10)
                             (:name "Inbox"
                                    :tag "Inbox")
                             (:name "Trivial"
@@ -83,9 +81,9 @@
                             (:name "Next to do"
                                    :todo "NEXT"
                                    :order 3)
-                            (:name "Cancelled"
-                                   :todo "CANCELLED")
-                            ;;(:discard (:anything t))
+                            ;;(:name "Cancelled"
+                            ;;      :todo "CANCELLED")
+                            ;;(:discard (:anything))
                             ))))))))
   (setq org-super-agenda-header-map nil) ;; evil working
   
@@ -156,7 +154,8 @@
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
                 (sequencep "SOMEDAY(s)" "DELAY(l@/!)")
-                (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "MEETING"))))
+                (sequence "WAITING(w@/!)" "CANCELLED(c@/!)" "MEETING(m)")
+                )))
 
   (setq org-todo-keyword-faces
         (quote (("TODO" :foreground "red" :weight bold)
@@ -165,7 +164,6 @@
                 ("SOMEDAY" :foreground "chartreuse3" :weight bold)
                 ("DELAY" :foreground "gold" :weight bold)
                 ("WAITING" :foreground "yellow" :weight bold)
-                ("HOLD" :foreground "orange" :weight bold)
                 ("CANCELLED" :foreground "gray" :weight bold)
                 )))
 
