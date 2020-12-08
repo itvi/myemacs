@@ -28,7 +28,7 @@
         ("C-'" . nil)
         )
   :config
-  (setq system-time "C")
+  ;;(setq system-time "C")
   (setq org-startup-folded 'content)
   ;; Default directory for org file
   (setq
@@ -56,10 +56,10 @@
 
 ;;; Task categories
   (setq org-todo-keywords
-	    (quote ((sequence "TODO(t)" "|" "DONE(d)")
+	    (quote ((sequence "TODO(t)" "|" "DONE(d!/!)")
 		        (sequence "PROJECT(p)" "|" "DONE(d)" "CANCELLED(c)")
 		        (sequence "WAITING(w)" "|")
-		        (sequence "|" "CANCELLED(c)")
+		        (sequence "|" "CANCELLED(c@/!)")
 		        (sequence "SOMEDAY(s)" "|" "CANCELLED(c)")
 		        (sequence "|" "MEETING")
 		        )))
@@ -108,7 +108,7 @@
    ;; Define the custum capture templates
    org-capture-templates
    '(("t" "todo" entry (file+datetree org-default-notes-file)
-      "* TODO %?\n%u\n%a\n" :clock-in t :clock-resume t)
+      "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
      ("m" "Meeting/Interruption" entry (file org-default-notes-file)
       "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
      ;; ("d" "Diary" entry (file+datetree "~/org/diary.org")
@@ -273,7 +273,7 @@ should be continued."
                          (tags-todo "DEADLINE<\"<today>\"" ((org-agenda-overriding-header "Over Due: (deadline<today)")))
 
                          ;; (tags-todo "DEADLINE=\"<today>\"" ((org-agenda-overriding-header "\n-------------------------------\nMust Do Today: (deadline=today)\n-------------------------------")))
-                         (tags-todo "DEADLINE=\"<today>\"" ((org-agenda-overriding-header "⚡Must Do Today: (deadline=today)")))
+                         (tags-todo "DEADLINE=\"<today>\"" ((org-agenda-overriding-header "Must Do Today: (deadline=today)")))
 
                          (tags-todo  "DEADLINE>\"<today>\""
                                      ((org-agenda-overriding-header "Upcoming deadlines:")
@@ -294,6 +294,7 @@ should be continued."
            
            ;;((org-agenda-compact-blocks t))
            ) ; end list
+          ("r" "Research"((tags "research")))
           )
         ;; If an item has a (near) deadline, and is scheduled, only show the deadline.
         org-agenda-skip-scheduled-if-deadline-is-shown t
