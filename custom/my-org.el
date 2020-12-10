@@ -86,47 +86,46 @@
      ))
 
   ;;; Capture templates
-  ;; (setq org-capture-templates
-  ;;       (quote (("i" "inbox" entry (file "~/org/inbox.org")
-  ;;                "* TODO %?\n%U\n%a\n")
-  ;;               ("t" "todo" entry (file+datetree "~/org/todo.org")
-  ;;                "* TODO %?\n  %U\n  %a\n")
-  ;;               ("p" "pause" entry (file "~/org/refile.org")
-  ;;                "* %? :PAUSE:\n%U\n%a\n" :clock-in t :clock-resume t)
-  ;;               ("r" "reference" entry (file "~/org/reference.org")
-  ;;                "* %? \n%U\n%a\n")
-  ;;               ("d" "diary" entry (file+datetree "~/org/diary.org")
-  ;;                "* %?\n%U\n" :clock-in t :clock-resume t)
-  ;;               ("w" "Work Log" entry (file+datetree "~/org/worklog.org")
-  ;;                "* %?\n%U\n" :clock-in t :clock-resume t)
-  ;;               ("h" "habit" entry (file "~/org/habit.org")
-  ;;                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
-  ;;               )
-  ;;              )
-  ;;       )
-  (setq
-   ;; Define the custum capture templates
-   org-capture-templates
-   '(("t" "todo" entry (file+datetree org-default-notes-file)
-      "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-     ("m" "Meeting/Interruption" entry (file org-default-notes-file)
-      "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
-     ;; ("d" "Diary" entry (file+datetree "~/org/diary.org")
-     ;;  "* %?\n%U\n" :clock-in t :clock-resume t)
-     ("i" "Idea" entry (file org-default-notes-file)
-      "* %? :IDEA: \n%t\n" :clock-in t :clock-resume t)
-     ;; ("n" "Next task" entry (file+headline org-default-notes-file "Tasks")
-     ;;  "** NEXT %? \nDEADLINE: %t")
-     ("e" "Respond email" entry (file org-default-notes-file)
-      "* TODO Respond to %:from on %:subject :EMAIL: \nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
-     ("s" "Someday" entry (file org-default-notes-file)
-      "* SOMEDAY %? :SOMEDAY: \n%u\n" :clock-in t :clock-resume t :empty-lines 1)
-     ("p" "Project entry" entry (file org-default-notes-file)
-      "* PROJECT %? :PROJECT: \n%u\n" :clock-in t :clock-resume t :empty-lines 1)
-     )
-   ;; Keep a line between headers
-   org-cycle-separator-lines 1
-   )
+  (setq org-capture-templates
+        (quote (("i" "inbox" entry (file "~/org/inbox.org")
+                 "* TODO %?\n%U\n%a\n")
+                ("t" "todo" entry (file+datetree "~/org/todo.org")
+                 "* TODO %?\n  %U\n  %a\n")
+                ("p" "pause" entry (file "~/org/refile.org")
+                 "* %? :PAUSE:\n%U\n%a\n" :clock-in t :clock-resume t)
+                ("r" "reference" entry (file "~/org/reference.org")
+                 "* %? \n%U\n%a\n")
+                ("d" "diary" entry (file+datetree "~/org/diary.org")
+                 "* %?\n%U\n" :clock-in t :clock-resume t)
+                ("w" "Work Log" entry (file+datetree "~/org/worklog.org")
+                 "* %?\n%U\n" :clock-in t :clock-resume t)
+                ("h" "habit" entry (file "~/org/habit.org")
+                 "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
+                )))
+  
+  ;; (setq
+  ;;  ;; Define the custum capture templates
+  ;;  org-capture-templates
+  ;;  '(("t" "todo" entry (file+datetree org-default-notes-file)
+  ;;     "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+  ;;    ("m" "Meeting/Interruption" entry (file org-default-notes-file)
+  ;;     "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
+  ;;    ;; ("d" "Diary" entry (file+datetree "~/org/diary.org")
+  ;;    ;;  "* %?\n%U\n" :clock-in t :clock-resume t)
+  ;;    ("i" "Idea" entry (file org-default-notes-file)
+  ;;     "* %? :IDEA: \n%t\n" :clock-in t :clock-resume t)
+  ;;    ;; ("n" "Next task" entry (file+headline org-default-notes-file "Tasks")
+  ;;    ;;  "** NEXT %? \nDEADLINE: %t")
+  ;;    ("e" "Respond email" entry (file org-default-notes-file)
+  ;;     "* TODO Respond to %:from on %:subject :EMAIL: \nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
+  ;;    ("s" "Someday" entry (file org-default-notes-file)
+  ;;     "* SOMEDAY %? :SOMEDAY: \n%u\n" :clock-in t :clock-resume t :empty-lines 1)
+  ;;    ("p" "Project entry" entry (file org-default-notes-file)
+  ;;     "* PROJECT %? :PROJECT: \n%u\n" :clock-in t :clock-resume t :empty-lines 1)
+  ;;    )
+  ;;  ;; Keep a line between headers
+  ;;  org-cycle-separator-lines 1
+  ;;  )
 
   ;;; Tagging tasks
   ;; Everything between :startgroup :endgroup below is a single tag for that task—i.e. you can only choose one. ? gives the shortcut to add the tag.
@@ -259,21 +258,30 @@ should be continued."
   (setq org-agenda-custom-commands
         '(				; start list
           (" " "Agenda" (
-                         (tags-todo "SCHEDULED=\"<today>\""
+                         (tags-todo "SCHEDULED>=\"<today>\"&<\"<+1d>\""
                                     ((org-agenda-overriding-header "Today's Schedule:")
-                                     (org-agenda-sorting-strategy '(todo-state-down))))
+                                     (org-agenda-entry-types '(:scheduled))))
 
                          (tags-todo "SCHEDULED<\"<today>\""
                                     ((org-agenda-overriding-header "Past Schedule:")
+                                     (org-agenda-entry-types '(:scheduled))
                                      (org-agenda-skip-function '(or (air-org-skip-subtree-if-habit)
                                                                     ;; https://gnu.huihoo.org/emacs/manual/org/Special-agenda-views.html
-                                                                    (org-agenda-skip-entry-if 'todo '("WAITING" "SOMEDAY"))))
-                                     (org-agenda-sorting-strategy '(todo-state-down))))
+                                                                    (org-agenda-skip-entry-if 'todo '("WAITING" "SOMEDAY"))
+                                                                    ;; if both scheduled and deadline,show deadline.
+                                                                    (org-agenda-skip-if nil '(deadline))))
+                                     (org-agenda-sorting-strategy '(priority-down category-keep time-up))
+                                     )
+                                    )
                          
-                         (tags-todo "DEADLINE<\"<today>\"" ((org-agenda-overriding-header "Over Due: (deadline<today)")))
+                         (tags-todo "DEADLINE<\"<today>\""
+                                    ((org-agenda-overriding-header "Over Due: (deadline<today)")
+                                     (org-agenda-entry-types '(:deadline))))
 
                          ;; (tags-todo "DEADLINE=\"<today>\"" ((org-agenda-overriding-header "\n-------------------------------\nMust Do Today: (deadline=today)\n-------------------------------")))
-                         (tags-todo "DEADLINE=\"<today>\"" ((org-agenda-overriding-header "Must Do Today: (deadline=today)")))
+                         (tags-todo "DEADLINE=\"<today>\""
+                                    ((org-agenda-overriding-header "Must Do Today: (deadline=today)")
+                                     (org-agenda-entry-types '(:deadline))))
 
                          (tags-todo  "DEADLINE>\"<today>\""
                                      ((org-agenda-overriding-header "Upcoming deadlines:")
@@ -297,21 +305,21 @@ should be continued."
           ("r" "Research"((tags "research")))
           )
         ;; If an item has a (near) deadline, and is scheduled, only show the deadline.
-        org-agenda-skip-scheduled-if-deadline-is-shown t
+        ;;org-agenda-skip-scheduled-if-deadline-is-shown t
         )
 
   ;; custom header
   (custom-set-faces
    '(org-agenda-structure ((t (:foreground "orange" :box (:line-width 1 :color "bisque") :weight bold))))
    )
-  
+
   ;;; Habits
   (add-to-list 'org-modules 'org-habit t)
 
   ;; add new line between blocks
   (setq org-agenda-compact-blocks nil)
   (setq org-agenda-block-separator "")
-  
+
   (add-hook 'org-agenda-mode-hook 'org-agenda-to-appt)
 
   ;; ;; color file name in agenda view
