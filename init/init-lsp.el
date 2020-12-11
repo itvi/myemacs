@@ -58,6 +58,7 @@
   (setq lsp-prefer-flymake nil)
   (setq lsp-enable-snippet nil)
   (setq lsp-prefer-capf t)
+  (setq lsp-enable-links nil)
   ;; (setq gofmt-command "goimports")
   )
 
