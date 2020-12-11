@@ -44,46 +44,22 @@
 
 ;; ---------------------------------------------------
 ;; lsp
+;; https://github.com/golang/tools/blob/master/gopls/doc/emacs.md
 ;; ---------------------------------------------------
-;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-;;(setq lsp-keymap-prefix "C-l")
-
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :commands(lsp lsp-deferred)
-;;   :hook ((
-;;           go-mode
-;;           python-mode
-;;           js-mode typescript-mode js2-mode rjsx-mode
-;;           ) . lsp)
-;;   :config
-;;   (setq lsp-prefer-flymake nil)
-;;   (setq lsp-enable-snippet nil)
-;;   (setq gofmt-command "goimports")
-;;   )
-
-(setq lsp-keymap-prefix "s-l")
-
 (use-package lsp-mode
   :ensure t
-  :hook (
-         (go-mode . lsp)
-         (python-mode . lsp)
-         (js-mode . lsp)
-         (typescript-mode . lsp)
-         (js2-mode . lsp)
-         ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp
-  :init
-  ;; (setq lsp-auto-configure nil)
+  :commands(lsp lsp-deferred)
+  :hook ((
+          go-mode
+          python-mode
+          js-mode typescript-mode js2-mode rjsx-mode
+          ) . lsp-deferred)
+  :config
+  (setq lsp-prefer-flymake nil)
   (setq lsp-enable-snippet nil)
-  (setq lsp-completion-provider :capf)
+  (setq lsp-prefer-capf t)
+  ;; (setq gofmt-command "goimports")
   )
-
-(with-eval-after-load 'lsp-mode
-  ;; :global/:workspace/:file
-  (setq lsp-modeline-diagnostics-scope :workspace))
 
 ;; Set up before-save hooks to format buffer and add/delete imports.
 ;; Make sure you don't have other gofmt/goimports hooks enabled.
@@ -116,19 +92,6 @@
    '(lsp-ui-doc-header ((t :foreground "#ff8000" :background "#00ff00")))
    '(lsp-ui-doc-url ((t :inherit link))))
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
-(use-package company-lsp
-  :ensure t
-  :requires company
-  :config
-  (push 'company-lsp company-backends)
-  (setq company-lsp-cache-candidates 'auto) ;; ignore case
-  (setq company-lsp-enable-snippet nil)
-
-  ;; Disable client-side cache because the LSP server does a better job.
-  (setq company-transformers nil
-        company-lsp-async t
-        company-lsp-cache-candidates nil))
 
 (use-package lsp-ivy
   :after(lsp ivy)
