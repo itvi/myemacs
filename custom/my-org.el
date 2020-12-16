@@ -29,7 +29,8 @@
         )
   :config
   ;;(setq system-time "C")
-  (setq org-startup-folded 'content)
+  (setq org-agenda-inhibit-startup nil)
+  (setq org-startup-folded t)
   ;; Default directory for org file
   (setq
    ;; Default directory for org files
@@ -58,7 +59,7 @@
   (setq org-todo-keywords
 	    (quote ((sequence "TODO(t)" "|" "DONE(d!/!)")
 		        (sequence "PROJECT(p)" "|" "DONE(d)" "CANCELLED(c)")
-		        (sequence "WAITING(w)" "|")
+		        (sequence "WAITING(w@/!)" "|")
 		        (sequence "|" "CANCELLED(c@/!)")
 		        (sequence "SOMEDAY(s)" "|" "CANCELLED(c)")
 		        (sequence "|" "MEETING")
