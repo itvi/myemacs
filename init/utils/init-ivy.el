@@ -42,7 +42,8 @@
    "ff" 'counsel-find-file
    "fr"	'counsel-recentf
    ;;"p"  '(:ignore t :which-key "project")
-   "pf" '(counsel-git :which-key "find file in git dir")
+   ;;"pf" '(counsel-git :which-key "find file in git dir")
+   "pf" 'projectile-find-file
    )
   (general-define-key
    :states '(normal visual insert emacs)
