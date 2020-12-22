@@ -71,28 +71,35 @@
 
 (use-package lsp-ui
   :ensure t
-  :requires lsp-mode flycheck
-  ;; :bind("C-c l" . lsp-ui-imenu)
+  :custom
+  (lsp-headerline-breadcrumb-enable nil)
   :config
-  ;; (setq
-  ;;  ;; lsp-ui-doc
-  ;;  lsp-ui-doc-enable t
-  ;;  lsp-ui-doc-header t
-  ;;  lsp-ui-doc-border (face-foreground 'default)
-  ;;  lsp-ui-doc-position 'at-point
-  ;;  ;; lsp-ui-imenu
-  ;;  lsp-ui-imenu-enable t
-  ;;  ;; lsp-ui-peek
-  ;;  (lsp-ui-peek-enable t)
-  ;;  ;; (lsp-ui-peek-peek-height 20)
-  ;;  ;; (lsp-ui-peek-list-width 50)
-  ;;  ;; (lsp-ui-peek-fontify 'on-demand) ;; never, on-demand, or always
-  ;;  )
-  (custom-set-faces
-   '(lsp-ui-doc-background ((t :background "black")))
-   '(lsp-ui-doc-header ((t :foreground "#ff8000" :background "#00ff00")))
-   '(lsp-ui-doc-url ((t :inherit link))))
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (setq lsp-ui-doc-position 'at-point)
+  )
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :requires lsp-mode flycheck
+;;   ;; :bind("C-c l" . lsp-ui-imenu)
+;;   :config
+;;   ;; (setq
+;;   ;;  ;; lsp-ui-doc
+;;   ;;  lsp-ui-doc-enable t
+;;   ;;  lsp-ui-doc-header t
+;;   ;;  lsp-ui-doc-border (face-foreground 'default)
+;;   ;;  lsp-ui-doc-position 'at-point
+;;   ;;  ;; lsp-ui-imenu
+;;   ;;  lsp-ui-imenu-enable t
+;;   ;;  ;; lsp-ui-peek
+;;   ;;  (lsp-ui-peek-enable t)
+;;   ;;  ;; (lsp-ui-peek-peek-height 20)
+;;   ;;  ;; (lsp-ui-peek-list-width 50)
+;;   ;;  ;; (lsp-ui-peek-fontify 'on-demand) ;; never, on-demand, or always
+;;   ;;  )
+;;   (custom-set-faces
+;;    '(lsp-ui-doc-background ((t :background "black")))
+;;    '(lsp-ui-doc-header ((t :foreground "#ff8000" :background "#00ff00")))
+;;    '(lsp-ui-doc-url ((t :inherit link))))
+;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package lsp-ivy
   :after(lsp ivy)
