@@ -16,7 +16,7 @@
   )
 
 (use-package org
-  ;; :pin manual ;; :pin org
+  :pin manual ;; :pin org
   :ensure  org-plus-contrib
   :defer t
   :commands (org-agenda org-capture)
