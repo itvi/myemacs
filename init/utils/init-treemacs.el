@@ -113,7 +113,7 @@
   :ensure t
   :config
   (setq inhibit-compacting-font-caches t)
-  (setq all-the-icons-scale-factor 1.1))
+  (setq all-the-icons-scale-factor 1.3))
 
 (provide 'init-treemacs)
 ;;; init-treemacs ends here
