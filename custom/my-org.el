@@ -275,6 +275,10 @@ should be continued."
                                      (org-agenda-sorting-strategy '(priority-down category-keep time-up))
                                      )
                                     )
+
+                         (tags-todo "SCHEDULED=\"<tomorrow>\""
+                                    ((org-agenda-overriding-header "Tomorrow's Schedule:")
+                                     (org-agenda-entry-types '(:scheduled))))
                          
                          (tags-todo "DEADLINE<\"<today>\""
                                     ((org-agenda-overriding-header "Over Due: (deadline<today)")

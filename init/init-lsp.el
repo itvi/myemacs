@@ -54,12 +54,11 @@
           python-mode
           js-mode typescript-mode js2-mode rjsx-mode
           ) . lsp-deferred)
-  :config
+  :init
+  (setq lsp-enable-snippet t)
   (setq lsp-prefer-flymake nil)
-  (setq lsp-enable-snippet nil)
   (setq lsp-prefer-capf t)
   (setq lsp-enable-links nil)
-  ;; (setq gofmt-command "goimports")
   )
 
 ;; Set up before-save hooks to format buffer and add/delete imports.
@@ -74,7 +73,7 @@
   :custom
   (lsp-headerline-breadcrumb-enable nil)
   :config
-  (setq lsp-ui-doc-position 'at-point)
+  ;; (setq lsp-ui-doc-position 'at-point)
   )
 ;; (use-package lsp-ui
 ;;   :ensure t

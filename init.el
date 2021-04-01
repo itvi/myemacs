@@ -117,6 +117,7 @@
 ;;(require 'my-mode-line)
 (require 'my-configs)
 (require 'my-org)
+(require 'my-ligature)
 
 ;;----------------------------------------------------------------------------
 ;; Load configs for utility
