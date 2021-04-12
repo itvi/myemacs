@@ -259,8 +259,7 @@ should be continued."
   (setq org-agenda-custom-commands
         '(				; start list
           (" " "Agenda" (
-                         ;;(tags-todo "SCHEDULED>=\"<today>\"&<\"<+1d>\""
-                         (tags-todo "SCHEDULED=\"<today>\""
+                         (tags-todo "SCHEDULED>=\"<today>\"&SCHEDULED<\"<+1d>\""
                                     ((org-agenda-overriding-header "Today's Schedule:")
                                      (org-agenda-entry-types '(:scheduled))))
 
@@ -276,7 +275,7 @@ should be continued."
                                      )
                                     )
 
-                         (tags-todo "SCHEDULED=\"<tomorrow>\""
+                         (tags-todo "SCHEDULED>=\"<tomorrow>\"&SCHEDULED<\"<+2d>\""
                                     ((org-agenda-overriding-header "Tomorrow's Schedule:")
                                      (org-agenda-entry-types '(:scheduled))))
                          
