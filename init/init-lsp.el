@@ -20,6 +20,8 @@
 ;; ------------------------------------------
 ;; python
 ;; ------------------------------------------
+;; pip install python-language-server[all]
+;; set another location: M-x venv-set-location
 (use-package virtualenvwrapper
   :ensure t
   :commands(venv-workon)
