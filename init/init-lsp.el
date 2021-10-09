@@ -55,6 +55,7 @@
           go-mode
           python-mode
           js-mode typescript-mode js2-mode rjsx-mode
+          c-mode c++-mode
           ) . lsp-deferred)
   :init
   (setq lsp-enable-snippet t)
