@@ -255,5 +255,7 @@
       (unset-proxy)
     (set-proxy)))
 
+(yas-global-mode)
+
 (provide 'my-configs)
 ;;; my-configs.el ends here
