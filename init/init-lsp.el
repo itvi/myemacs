@@ -73,6 +73,7 @@
 
 (use-package lsp-ui
   :ensure t
+  :after(lsp)
   :custom
   (lsp-headerline-breadcrumb-enable nil)
   :config
