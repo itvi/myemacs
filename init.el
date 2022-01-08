@@ -91,6 +91,7 @@
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (use-package diminish :ensure t :defer 1)
+(use-package yasnippet :ensure t)
 
 (when (memq window-system '(mac ns x))
   (use-package exec-path-from-shell
